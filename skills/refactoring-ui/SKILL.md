@@ -22,7 +22,7 @@ Detect and state briefly:
 1. **Framework** — React/Vue/Svelte/plain HTML; SSR or SPA.
 2. **Tailwind, and which major version.** v4 declares theme in CSS via `@theme`; v3 uses `tailwind.config.js`. Check `package.json`, then look for `@import "tailwindcss"` (v4) vs `@tailwind base` (v3).
 3. **Existing design tokens** — CSS custom properties, a theme object, a `tokens.json`, a `theme/` directory.
-4. **Component library** — shadcn/ui, MUI, Ant Design, Chakra, Radix. These carry their own token contracts.
+4. **Component library** — shadcn/ui, MUI, Ant Design, Chakra, Radix. These carry their own token contracts — for shadcn/ui, load `16-component-libraries.md` before writing or editing any component.
 5. **Dark mode** — present, planned, or absent.
 
 **The prime directive that follows from this: an existing system always wins.** Where the project has a system, translate the book's principles into that system's vocabulary. Where it has none, propose one. Never overwrite, never silently migrate, never add a build-time dependency the user didn't ask for.
@@ -109,6 +109,8 @@ The order is the method. Following it out of order is how interfaces end up over
 
 Consult `12-component-recipes.md` for buttons, cards, form groups, tables, dropdowns, modals, alerts and empty states rather than re-deriving them.
 
+**Steps 1–3 must leave a trace, not just happen in your head.** A single generation pass tends to compress "grayscale first, then rank, then color" into "write the colored markup directly" — the order gets lost because nothing forces it to surface. Before the first line of markup, write a short constraint brief as a leading comment in the file you're about to produce: the content ranking from step 3 (primary / secondary / tertiary, one primary action), and the token values steps 4–6 will draw from. It's the process made checkable, not a formality — a reviewer (human or a later Workflow D pass) can see the ranking was actually decided instead of trusting that it was.
+
 ## Workflow C · Refine
 
 Audit first, then change. Never rewrite a component wholesale because it "feels off."
@@ -138,7 +140,7 @@ Report P0s even when the user asked about something else.
 | Mode | When | Behavior |
 |---|---|---|
 | **Focused** | user names a direction ("look at the colors") | Load 1–2 lens refs, single pass |
-| **Sweep** *(default for "review this")* | broad request, one screen or component | Seven lenses in order, **one ref loaded at a time**, findings accumulated, ref released before the next |
+| **Sweep** *(default for "review this")* | broad request, one screen or component | Run the self-contained checklist in `13-audit-rubric.md`, lens by lens, in order — no chapter file needed. Load one only to explain a rule or settle a disputed finding |
 | **Parallel** | large surface, many files, **and the user agrees** | One subagent per lens, each returning the finding schema; then merge |
 
 **Sweep order is fixed and not negotiable:**
@@ -203,6 +205,7 @@ Reference files and this skill are written in English. **Deliverables follow the
 | `13-audit-rubric.md` | Workflows C and D, always |
 | `14-antipatterns.md` | diagnosing from a symptom; reviewing AI-generated UI |
 | `15-beyond-the-book.md` | dark mode, focus states, target sizes, motion, breakpoints, z-index |
+| `16-component-libraries.md` | Step 0 detected shadcn/ui (or another component library with its own token contract) |
 
 Everything in `15-beyond-the-book.md` is an extension, not the book's position, and is labeled as such wherever it appears.
 

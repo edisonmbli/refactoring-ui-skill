@@ -95,24 +95,25 @@ cp -r refactoring-ui-skill/skills/refactoring-ui .claude/skills/     # 项目级
 git clone https://github.com/edisonmbli/refactoring-ui-skill.git .refactoring-ui
 ```
 
-你的助手本来就会读一个指令文件，把下面这段加进去：
+然后直接拷贝现成的指路文件，别手抄——description 触发这种指令，模型一忙就是最先被跳过的那种：
 
-```markdown
-## 设计相关任务
+```bash
+# Codex、Copilot、Windsurf、Cline/Roo、Aider，或者作为 Cursor 的 AGENTS.md 兜底
+cp .refactoring-ui/templates/AGENTS.md AGENTS.md          # 或合并进你已有的那份
 
-当任务涉及构建、修改或评审任何用户界面时，**先**读 `.refactoring-ui/skills/refactoring-ui/SKILL.md`，按里面的路由表走。它会告诉你这次该加载 `references/` 下的哪个文件——按需加载，一次一个。不要通读整个 references/ 目录，渐进式加载就是这套设计本身。
+# Cursor 专用——靠文件类型匹配挂载，不靠 Cursor 从 description 猜意图
+mkdir -p .cursor/rules && cp .refactoring-ui/templates/cursor/refactoring-ui.mdc .cursor/rules/
 ```
-
 
 | 工具               | 放哪                                                                            |
 | ------------------ | ------------------------------------------------------------------------------- |
 | **OpenAI Codex**   | 仓库根目录的`AGENTS.md`                                                         |
-| **Cursor**         | `.cursor/rules/design.mdc`（记得加 `description:` frontmatter），或 `AGENTS.md` |
+| **Cursor**         | `.cursor/rules/refactoring-ui.mdc`（glob 匹配，见上），或 `AGENTS.md`           |
 | **GitHub Copilot** | `.github/copilot-instructions.md`                                               |
 | **Windsurf**       | `.windsurf/rules/design.md`                                                     |
 | **Cline / Roo**    | `.clinerules/design.md`                                                         |
 | **Aider**          | `CONVENTIONS.md`，启动时用 `--read` 带上                                        |
-| **其他**           | 会话开始时它会读的任何文件；实在不行，把这段直接贴进对话也管用                  |
+| **其他**           | 会话开始时它会读的任何文件；实在不行，把 `templates/AGENTS.md` 的内容贴进对话也管用 |
 
 `AGENTS.md` 正在变成跨工具的通用约定，能用就优先用它；这些路径变动挺频繁，哪个不生效就去翻一下该工具的最新文档。
 

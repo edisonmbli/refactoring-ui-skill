@@ -43,7 +43,7 @@ Four rounds maximum, batched, every question skippable. If the user says "just p
 ### Colors
 
 ```bash
-python3 scripts/generate_palette.py --base '#4f46e5' --name primary
+python3 scripts/generate_palette.py --base '#0f7b6c' --name primary   # your brand color, not this one
 python3 scripts/generate_palette.py --grey --temperature cool --extended --name neutral
 python3 scripts/generate_palette.py --base '#dc2626' --toward cool --name danger
 ```

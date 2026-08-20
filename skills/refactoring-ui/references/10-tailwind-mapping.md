@@ -239,3 +239,4 @@ If both patterns appear, the project is mid-migration — ask before writing the
 - Component-level assembly → `12-component-recipes.md`
 - Arbitrary values as an audit finding → `13-audit-rubric.md`
 - Theme authoring end to end → `11-design-tokens.md`
+- shadcn/ui's CSS-variable contract instead of raw utilities → `16-component-libraries.md`

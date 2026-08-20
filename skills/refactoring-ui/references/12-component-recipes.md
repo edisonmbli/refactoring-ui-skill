@@ -252,3 +252,4 @@ The `§5.3.2` component — it exercises both ends of a color ramp at once, whic
 - Utilities and v3/v4 differences → `10-tailwind-mapping.md`
 - Diagnosing an existing component → `14-antipatterns.md`
 - Dark mode, focus states, target sizes → `15-beyond-the-book.md`
+- Building on shadcn/ui or another component library instead of raw classes → `16-component-libraries.md`

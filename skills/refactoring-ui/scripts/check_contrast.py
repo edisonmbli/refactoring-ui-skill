@@ -8,10 +8,10 @@ per-hue perceived brightness from §5.4.1.
 
 Stdlib only. No dependencies.
 
-  python3 check_contrast.py --pair '#ffffff' '#4f46e5'
+  python3 check_contrast.py --pair '#ffffff' '#bd4d28'
   python3 check_contrast.py --pair '#6b7280' '#ffffff' --size large
   python3 check_contrast.py --matrix tokens.json
-  python3 check_contrast.py --brightness '#eab308' '#4f46e5'
+  python3 check_contrast.py --brightness '#eab308' '#bd4d28'
 
 Exit status is 1 if any checked pair fails, so it can gate a build.
 """

@@ -10,8 +10,8 @@ Implements, in order:
 
 Stdlib only. No dependencies.
 
-  python3 generate_palette.py --base '#4f46e5'
-  python3 generate_palette.py --base 'hsl(243, 75%, 59%)' --extended
+  python3 generate_palette.py --base 'hsl(15, 65%, 45%)'
+  python3 generate_palette.py --base '#0f7b6c' --extended
   python3 generate_palette.py --grey --temperature cool
   python3 generate_palette.py --base '#eab308' --json
 """
@@ -172,7 +172,8 @@ def grey_base(temperature: str, saturation: float) -> tuple[float, float, float]
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('--base', help="base color: '#4f46e5' or 'hsl(243,75%%,59%%)'")
+    p.add_argument('--base', help="base color, e.g. '#0f7b6c' or 'hsl(15,65%%,45%%)' -- "
+                                   "your project's actual brand color, not a default")
     p.add_argument('--grey', action='store_true', help='build a neutral ramp (§5.3.4)')
     p.add_argument('--temperature', choices=('cool', 'warm', 'neutral'), default='cool',
                    help='grey temperature, §5.5.1 (default: cool)')

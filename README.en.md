@@ -94,23 +94,26 @@ First put the Skill somewhere stable:
 git clone https://github.com/edisonmbli/refactoring-ui-skill.git .refactoring-ui
 ```
 
-Your agent already reads some instruction file. Add this to it:
+Then copy a ready-made pointer file instead of hand-typing one — a description-only trigger is exactly the kind of instruction agents skip under load:
 
-```markdown
-## Design work
+```bash
+# Codex, Copilot, Windsurf, Cline/Roo, Aider, or as an AGENTS.md fallback for Cursor
+cp .refactoring-ui/templates/AGENTS.md AGENTS.md          # or merge into your existing one
 
-When the task involves building, changing, or reviewing any user interface, read `.refactoring-ui/skills/refactoring-ui/SKILL.md` FIRST and follow its routing table. It names which file under `references/` to load for the task at hand — load them on demand, one at a time. Do not read the whole references/ directory; the progressive loading is the design.
+# Cursor specifically — glob-matched, so it attaches on the file type, not on Cursor
+# guessing intent from a description
+mkdir -p .cursor/rules && cp .refactoring-ui/templates/cursor/refactoring-ui.mdc .cursor/rules/
 ```
 
 | Agent | Where it goes |
 | ----- | ------------- |
 | **OpenAI Codex** | `AGENTS.md` at the repo root |
-| **Cursor** | `.cursor/rules/design.mdc` (add `description:` frontmatter), or `AGENTS.md` |
+| **Cursor** | `.cursor/rules/refactoring-ui.mdc` (glob-matched — see above), or `AGENTS.md` |
 | **GitHub Copilot** | `.github/copilot-instructions.md` |
 | **Windsurf** | `.windsurf/rules/design.md` |
 | **Cline / Roo** | `.clinerules/design.md` |
 | **Aider** | `CONVENTIONS.md`, passed with `--read` at startup |
-| **Anything else** | Whatever it reads at session start; failing that, pasting the snippet into the chat also works |
+| **Anything else** | Whatever it reads at session start; failing that, pasting `templates/AGENTS.md`'s content into the chat also works |
 
 `AGENTS.md` is becoming the cross-tool convention, so prefer it where available. These paths change often — if one doesn't take effect, check the tool's current docs.
 
