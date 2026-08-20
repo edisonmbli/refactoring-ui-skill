@@ -1,249 +1,189 @@
-# Refactoring UI — a Claude Skill
+# Refactoring UI：一个 Claude Skill
 
-**A design rulebook and diagnostic layer for web UI**, distilled from
-[*Refactoring UI*](https://www.refactoringui.com) by Adam Wathan & Steve Schoger
-into something an AI coding agent can actually apply.
+一本 AI 编码助手真正能执行的 Web 界面设计规则书，外加一层诊断。从 [《Refactoring UI》](https://www.refactoringui.com)（Adam Wathan & Steve Schoger 著）里拆出来。
 
-> ⚠️ **Unofficial and independent.** Not affiliated with, endorsed by, or reviewed
-> by the book's authors, and not a substitute for reading it —
-> [buy it](https://www.refactoringui.com), it's excellent.
-> See [ATTRIBUTION.md](ATTRIBUTION.md).
+> ⚠️ **非官方独立项目**，与原书作者无隶属关系，未经其审阅，也未获其背书。
 
-**[中文文档 →](README.zh-CN.md)**
+> 它替代不了读原书，[感兴趣建议读原版](https://www.refactoringui.com)，写得真的好。
+
+> 详见 [ATTRIBUTION.md](ATTRIBUTION.md)。
+
+**[English →](README.en.md)**
 
 ---
 
-## The problem
+## 目录
 
-AI coding agents write competent HTML and CSS, and produce interfaces that look
-*off*. Not broken — off.
+- [问题在哪](#问题在哪)
+- [这是什么](#这是什么)
+- [用起来是什么样](#用起来是什么样)
+- [安装](#安装)
+- [它还能干什么](#它还能干什么)
+- [几件需要前置说明的事](#几件需要前置说明的事)
+- [工作原理](#工作原理)
+- [许可证](#许可证)
 
-Everything centered. One spacing value everywhere. Indigo primary on a brand that
-isn't indigo. A blue-to-pink gradient. Every action a filled button. No empty
-state.
+## 问题在哪
 
-Each of those is a locally defensible decision. **Generation is local; design is
-global.** That gap is what a rulebook closes.
+AI 写得出合格的 HTML 和 CSS，做出来的界面却总是差点意思。虽然不是直接报错，但有时候会隐隐感觉“不对劲”。
 
-## What this is
+譬如，什么都居中。间距从头到尾一个值。主色总是偏好靛蓝或紫色。每个操作一律做成实心按钮。没有空状态。
 
-Most AI design tooling **generates**: describe an interface, receive one. This does
-the opposite job — it's the **constraint and diagnosis** layer. The rulebook and
-the reviewer, not the stylist.
+这些单拎出来看好像也没什么。但问题在于：**生成是局部的，设计要全局看。**
 
-So it composes with the generators instead of competing with them: hand a design
-tool the constraints *before* it runs, audit its output *after*, or run the build
-workflow on its own when there's no generator in play.
+中间缺的东西，可以用一本“规则书”来补。
 
-Why this book in particular: it's a rules book, not an inspiration book. Nearly
-every page is *symptom → mechanism → specific fix → concrete number*. And its
-author went on to write Tailwind CSS, so the path from principle to code is
-unusually short — the book's type scale, spacing scale and color ramps **are**
-Tailwind's defaults.
+## 这是什么
 
-This encodes all of it: **151 rules**, every one traceable, none dropped.
+市面上的 AI 设计工具大多在做生成：你描述一个界面，它给你一个界面。
 
-## What it looks like
+这个 Skill 干的是反过来的活。它是约束层和诊断层，是规则书和评审员，不是造型师。
 
-> *"Have a look at this settings page — something feels off but I can't tell what."*
+所以它跟那些生成工具不是竞争关系，是可以充分互补的：**生成之前把约束交给它，生成之后让它把产物走查一遍。**
 
-It detects your stack, renders the page at desktop and mobile widths, then sweeps
-seven lenses in a fixed order: **hierarchy → spacing → typography → color → depth →
-images → finishing**. The order is causal — hierarchy problems change what counts
-as a spacing problem, and spacing fixes routinely dissolve the "should this have a
-border" question entirely.
+Refactoring UI 是一本规则书，不是灵感书。几乎每一页都是 *症状 → 机制 → 具体做法 → 具体数值*，而且作者也写了 Tailwind CSS，所以从原则到代码这一段几乎没有损耗：书里的字号阶、间距阶、色阶，就是 Tailwind 的默认值。这个项目把整本书拆成了可执行规则，**151 条**，每一条都可追溯。
 
-What comes back is severity-ranked, and **every finding cites a rule**:
+## 用起来是什么样
 
-| Sev | Rule | Now | Proposed |
-|---|---|---|---|
-| P0 | §3.6 | Label spacing equals group spacing — the label is equidistant from its own input and the next one | `mb-1` inside, `mb-6` between |
-| P1 | §2.8 | Three primary-styled buttons | One primary; outline and link for the rest |
-| P1 | §6.2 | `shadow-lg` on static cards | `shadow-sm` — elevation is z-position, not importance |
+> *“帮我看看这个设置页，总觉得哪里不对但说不上来。”*
 
-Then a **Systemic** section, which is where it earns its keep: twelve "off-scale
-spacing" findings are *one* finding — there is no spacing scale.
+它会先摸清你的技术栈，分别在桌面和移动端两种宽度下把页面渲染出来，然后按固定顺序换七个视角逐一扫查：**层级 → 间距 → 排版 → 色彩 → 深度 → 图像 → 收尾**。
 
-No rule ID, no finding. If it can't name the rule, it's an opinion, and opinions
-get dropped.
+顺序是有因果的。层级没理顺，什么算间距问题就会跟着变；而间距一改，“这里到底要不要加条边框”这个问题往往自己就没了。
 
-## Install
+它交回来的每一条 finding（问题项）都按严重度排好序，而且必须挂着规则号：
+
+
+| 严重度 | 规则  | 现状                                                   | 建议                                              |
+| ------ | ----- | ------------------------------------------------------ | ------------------------------------------------- |
+| P0     | §3.6 | 标签间距等于组间距，标签离自己的输入框和离下一组一样远 | 组内`mb-1`，组间 `mb-6`                           |
+| P1     | §2.8 | 三个按钮都是主操作样式                                 | 只留一个主操作，其余改描边和链接                  |
+| P1     | §6.2 | 静态卡片用了`shadow-lg`                                | 换`shadow-sm`。阴影表达的是 elevation，不是重要性 |
+
+后面还有一段“系统性问题”，主要抓整体，譬如“当前项目缺少间距阶”。
+
+## 安装
 
 ```
 /plugin marketplace add edisonmbli/refactoring-ui-skill
 /plugin install refactoring-ui
 ```
 
-That's it — no registry, nothing uploaded. `marketplace add` clones this repo and
-reads `.claude-plugin/marketplace.json`; `install` loads what it finds under the
-conventional directories. Updating is `git pull` wearing a different name:
-`/plugin marketplace update refactoring-ui`.
+就这样，没有中心化的包仓库，也不往任何地方上传东西。`marketplace add` 做的事，是把仓库 clone 下来、读一下 `.claude-plugin/marketplace.json`；`install` 再从约定目录里把内容加载进来。所谓更新，其实就是换了个名字的 `git pull`：`/plugin marketplace update refactoring-ui`。
 
-Scripts want **Python 3.9+** and no packages. Without Python everything still
-works — the palette algorithm is documented as a hand-executable procedure.
+脚本要 **Python 3.9+**，零第三方依赖。没有 Python 也照样能用，色板算法有一份可以手工执行的说明。
 
 <details>
-<summary><b>Other ways to install — plain skill, and non-Claude-Code agents</b></summary>
+<summary><b>其他安装方式：普通 Skill，以及非 Claude Code 的工具</b></summary>
 
-### Claude Code, as a plain skill
+### Claude Code，作为普通 Skill
 
 ```bash
 git clone https://github.com/edisonmbli/refactoring-ui-skill.git
 
-cp -r refactoring-ui-skill/skills/refactoring-ui ~/.claude/skills/   # personal
-cp -r refactoring-ui-skill/skills/refactoring-ui .claude/skills/     # project
+cp -r refactoring-ui-skill/skills/refactoring-ui ~/.claude/skills/   # 个人级
+cp -r refactoring-ui-skill/skills/refactoring-ui .claude/skills/     # 项目级
 ```
 
-### Any other coding agent
+### 其他编码助手
 
-The plugin mechanism is Claude Code's. **The skill is not** — it's plain Markdown,
-built as *an index plus references loaded on demand*, which any file-reading agent
-can follow. It just has to be told once.
+插件机制是 Claude Code 专属的，但 Skill 本身不是。它就是一堆 Markdown，而且刻意做成了“一个索引 + 按需加载的引用文件”，任何能读文件的助手都能照着走，告诉它一次就行。
 
-Put the skill somewhere stable:
+先把 Skill 放到一个固定位置：
 
 ```bash
 git clone https://github.com/edisonmbli/refactoring-ui-skill.git .refactoring-ui
 ```
 
-Then add this to whichever instruction file your agent already reads:
+你的助手本来就会读一个指令文件，把下面这段加进去：
 
 ```markdown
-## Design work
+## 设计相关任务
 
-When the task involves building, changing, or reviewing any user interface,
-read `.refactoring-ui/skills/refactoring-ui/SKILL.md` FIRST and follow its
-routing table. It names which file under `references/` to load for the task
-at hand — load them on demand, one at a time. Do not read the whole
-references/ directory; the progressive loading is the design.
+当任务涉及构建、修改或评审任何用户界面时，**先**读 `.refactoring-ui/skills/refactoring-ui/SKILL.md`，按里面的路由表走。它会告诉你这次该加载 `references/` 下的哪个文件——按需加载，一次一个。不要通读整个 references/ 目录，渐进式加载就是这套设计本身。
 ```
 
-| Agent | File |
-|---|---|
-| **OpenAI Codex** | `AGENTS.md` at the repo root |
-| **Cursor** | `.cursor/rules/design.mdc` (add `description:` frontmatter), or `AGENTS.md` |
-| **GitHub Copilot** | `.github/copilot-instructions.md` |
-| **Windsurf** | `.windsurf/rules/design.md` |
-| **Cline / Roo** | `.clinerules/design.md` |
-| **Aider** | `CONVENTIONS.md`, passed with `--read` |
-| **Anything else** | Whatever it reads at session start — or paste the snippet into the chat |
 
-`AGENTS.md` is becoming the cross-tool convention and is the best single bet.
-These paths change; check your tool's docs if one doesn't take.
+| 工具               | 放哪                                                                            |
+| ------------------ | ------------------------------------------------------------------------------- |
+| **OpenAI Codex**   | 仓库根目录的`AGENTS.md`                                                         |
+| **Cursor**         | `.cursor/rules/design.mdc`（记得加 `description:` frontmatter），或 `AGENTS.md` |
+| **GitHub Copilot** | `.github/copilot-instructions.md`                                               |
+| **Windsurf**       | `.windsurf/rules/design.md`                                                     |
+| **Cline / Roo**    | `.clinerules/design.md`                                                         |
+| **Aider**          | `CONVENTIONS.md`，启动时用 `--read` 带上                                        |
+| **其他**           | 会话开始时它会读的任何文件；实在不行，把这段直接贴进对话也管用                  |
 
-**What degrades outside Claude Code:** the scripts need Python and shell access
-(there's a hand-executable fallback); visual verification needs browser tooling
-(without it, findings are marked `code-only`); parallel audits need subagents (the
-sequential sweep is the default anyway). None of it is load-bearing — the rules,
-the diagnosis and the audit discipline work in any agent that can read files.
+`AGENTS.md` 正在变成跨工具的通用约定，能用就优先用它；这些路径变动挺频繁，哪个不生效就去翻一下该工具的最新文档。
+
+离开 Claude Code 会损失什么：脚本需要 Python 和执行命令的权限，但有手工降级方案；视觉验证需要浏览器工具，没有的话结论只能来自源码，Skill 会自动标成 `code-only`；并行走查需要 subagent，而串行本来就是默认模式。这些都不是承重结构，规则、诊断、走查纪律，在任何能读文件的助手里都成立。
 
 </details>
 
-## What else it does
+## 它还能干什么
 
-**Establish a design system** — *"This project has no design standards. Set some
-up."* A short interview (product, personality, stack, optionally a reference site
-whose fonts and colors it reads directly), then five artifacts: tokens JSON, a
-Tailwind theme for *your* version, framework-neutral CSS, a human-readable
-`DESIGN.md` in your language, and a shareable `preview.html`.
+**搭一套设计系统**——*“这个项目没有设计规范，帮我定一套。”*
 
-Colors are **computed, not invented.** The book gives a complete palette algorithm
-and zero specific values, so the script implements the algorithm — bisection from a
-base shade, saturation raised as lightness leaves 50%, hue rotated toward brighter
-or darker hues within a 20–30° cap. Every text pair is contrast-checked before it
-ships.
+先来一段简单问答：产品是什么、想要什么调性、什么技术栈，也可以直接给它一个参考站 URL，它能读出那个站的字体栈和主色。问完交付五样东西：token JSON、对应你实际版本的 Tailwind 主题、框架无关的 CSS、一份写给人看的 `DESIGN.md` 说明书，以及可以直接发给同事看的 `preview.html`。
 
-**Build something new** — follows the book's order instead of jumping to pixels:
-feature before shell, grayscale before color, ranked content, values off the scale,
-measure and rhythm, *then* color, depth and polish. The empty state gets designed
-**with** the feature, not after.
+颜色是算出来的，不是拍脑袋定的。书里给了完整的色板算法，却一个具体色值都没给，所以脚本实现的就是那个算法：从基准色开始二分，明度偏离 50% 时提高饱和度，色相朝更亮或更暗的方向旋转，幅度控制在 20–30° 以内。每一组文字配色在交付前都过一遍对比度检查。
 
-**Explain why** — *"Why does grey text look wrong on our blue banner?"* Loads one
-reference and gives you the mechanism: what makes grey-on-white work isn't
-greyness, it's *reduced contrast* — the text moved closer to the background. On
-white those are the same direction, which hides the real mechanism. On blue they
-aren't. `§2.3`
+**从零做新东西**——按书里的顺序来，而不是上来就抠像素。
 
-## Notes for your setup
+先功能后外壳，先灰度后上色，内容先分好层级。取值必须来自既定的阶，行长和节奏先定下来，然后才轮到颜色、深度和收尾。空状态是跟功能一起设计的，不是事后补的。
 
-**You don't need Tailwind.** It's throughout because the book's author wrote it, so
-it's the shortest notation available — not because anything requires it. Hierarchy,
-measure, group spacing, contrast, elevation: none of that is a Tailwind concept.
-The skill detects what you actually have and adapts — v4 `@theme`, v3 config,
-tokens injected into shadcn/MUI/Ant's own contract, translation into your existing
-vocabulary, or framework-neutral CSS variables if you have nothing. **It will never
-install Tailwind, migrate your styling, or replace a design system you already
-have.**
+**问个为什么**——*“为什么灰字放在我们那个蓝色 banner 上就那么难看？”*
 
-**If you also use a design mode, ask for the review separately.** This is the one
-non-obvious thing. When you ask a design tool to build something and it succeeds,
-nothing signals a problem, so **no review happens** — a generator doesn't come back
-and critique its own work. Closing that gap takes one sentence from you: *"now
-review that against the design rules."* Cheaper still is going the other direction:
-hand it your tokens *before* it builds.
+它只加载一个引用文件，然后把机制讲给你听：灰字在白底上管用，不是因为它“灰”，而是因为对比度降下来了，文字在往背景色靠近。在白底上，“变灰”和“降对比”恰好是同一个方向，真正的机制就被盖住了；换到蓝底上，这两件事立刻分道扬镳。`§2.3`
 
-These aren't in tension, though it can look that way. Skills like `frontend-design`
-push toward *distinctive*; this pushes toward *systematic*. Different axes. A
-system tells you which blue and which spacing step — it never told you to build
-another boring dropdown. (The book makes that point itself, at `§8.6`.)
+## 几件需要前置说明的事
 
-**Say up front where you deviate on purpose.** Intentionally linear spacing scale,
-intentionally mixed radius, intentionally low-contrast brand color — mention it.
-Deliberate project conventions outrank the book's rules and get noted rather than
-scored as defects, but the skill can't know a choice was deliberate until you tell
-it, and an audit whose first page is full of decisions you already made is one
-you'll stop reading.
+**不用 Tailwind 也完全没问题。** Tailwind 之所以贯穿全文，是因为这本书的作者后来写了它，那是最省事的一种表达法，不是因为哪里离不开它。层级、行长、分组间距、对比度、elevation，没有一样是 Tailwind 的概念。
 
-## How it works
+Skill 会先看你实际用的是什么再适配：v4 给 `@theme`，v3 给 config；用了 shadcn/MUI/Ant，就把 token 注进它们自己的主题配置；已经有自己的 token，就翻译成你现有的那套命名；什么都没有，就给一份框架无关的 CSS 变量。**它不会给你装 Tailwind、不迁移你的样式方案、不替换你已有的设计系统。**
 
-Three layers, loaded progressively. `SKILL.md` (~220 lines) holds routing, twelve
-universal laws and four workflows, and stays in context. The 14 references load one
-at a time, only when the task needs them. Scripts and templates sit underneath.
+**如果你还在用别的设计生成工具（Design 模式、`frontend-design` 之类），需要单独说明要走查。** 这背后的原因是：当你让设计工具做点什么，它也顺利做出来了，这时候没有任何地方会报警，走查根本不会发生，因为生成器不会回头挑自己的毛病。这时候你只需要补一句：*“现在按设计规则审一遍。”* 或者更省事的是反过来做：在它动手**之前**就先把 Design Token 给它。
 
-Every rule carries the same six parts — **Rule · Why · How · Values · Tailwind ·
-Fails as** — so the skill reasons about *mechanism* rather than reciting
-conclusions. "Fails as" is the diagnostic entry point: start from what looks wrong,
-arrive at the rule.
+这两件事看着像在打架，其实并不。`frontend-design` 那一类追求的是有个性，这个追求的是成体系，两条不同的轴。设计系统告诉你用哪个蓝、哪一档间距，它可从来没让你再做一个无聊的下拉菜单。（这话是书里自己说的，`§8.6`。）
 
-Four things keep it honest:
+**哪个环节是故意而为之的，建议一开始就说明。** 譬如，间距阶故意做成线性的、圆角故意混用、品牌色故意压低对比等等，在启动前提一句就行。项目本身的刻意约定会压过书里的规则，Skill 会把冲突标出来，而不是判成缺陷。但如果你不说，它就无从知道那是有意为之，而一份报告，头一页全是你早就拍过板的决定，估计你翻两下就不会再看了。
 
-- **Existing systems always win.** It maps onto what you have, or proposes what's
-  missing. It never overwrites, migrates, or installs.
-- **Placeholders, not palettes.** Examples say `bg-{primary}-600`, never
-  `bg-indigo-600` — syntactically impossible to paste, so colors must resolve from
-  *your* tokens. That single convention is why it won't quietly ship you indigo.
-- **Invariants are marked.** Bold numbers are the book's rules and don't vary.
-  Everything else is one valid instance, not the required answer.
-- **Extensions are labeled.** Dark mode, focus states, motion and z-index post-date
-  the book. They're included, in a file that says so on every entry.
+## 工作原理
+
+三层结构，渐进式加载。`SKILL.md`（约 220 行）放路由、12 条通用铁律和 4 个工作流，常驻上下文；14 个引用文件按需加载，一次只装一个；脚本和模板垫在最底下。
+
+每条规则都是同样的六段式——**规则 · 为什么 · 怎么做 · 数值 · Tailwind 写法 · 失败长什么样**——让模型能顺着机制推理，而不是背结论。“失败长什么样”是诊断入口：从看着不对的地方出发，反查到规则。
+
+四条底线撑着它不跑偏：
+
+- **已有系统永远优先。** 它只做两件事：把原则映射到你已有的命名上，或者在缺失的地方提个建议。绝不覆盖、绝不迁移、绝不擅自安装。
+- **给的是占位符，不是色板。** 示例一律写 `bg-{primary}-600`，绝不写 `bg-indigo-600`：这种写法在语法上根本粘不进代码，颜色只能从你自己的 token 里解析。就这一条约定，它就不会闷声给你塞一堆靛蓝。
+- **不变量有标记。** 加粗的数字是书里的规则，不随项目变；其余的只是一个合法取值，不是标准答案。
+- **扩展有标注。** 暗色模式、focus 状态、动效、z-index 都是这本书之后才有的东西，这些都收了，但单独放一个文件，里面每一条都写明“书里没有这条”。
 
 <details>
-<summary><b>Project structure</b></summary>
+<summary><b>项目结构</b></summary>
 
 ```
-.claude-plugin/          plugin + marketplace manifests
+.claude-plugin/          插件与 marketplace 清单
 skills/refactoring-ui/
-  SKILL.md               routing, twelve laws, four workflows
+  SKILL.md               路由、12 条铁律、4 个工作流
   references/
-    00-coverage-matrix   all 151 rules, tracked — the anti-omission device
-    01-08                one per book chapter
-    10-15                Tailwind mapping, tokens, recipes, audit rubric,
-                         antipatterns, extensions beyond the book
+    00-coverage-matrix   151 条规则逐条追踪，防遗漏的兜底机制
+    01-08                对应原书八章，一章一个
+    10-15                Tailwind 映射、token、组件配方、走查判据、
+                         反模式、书外扩展
   scripts/               generate_palette · check_contrast · emit_tokens
-  assets/                token template, hand-fillable theme skeleton
-  examples/              worked before → after cases, also eval fixtures
+  assets/                token 模板、可手填的主题骨架
+  examples/              before → after 实例，兼作 eval 样本
 ```
 
 </details>
 
+## 许可证
 
-## License
-
-[MIT](LICENSE) for everything here. The book is a separate copyrighted work; this
-project reimplements its principles independently and isn't affiliated with its
-authors — [ATTRIBUTION.md](ATTRIBUTION.md) has the details.
+仓库内所有内容采用 [MIT](LICENSE)。原书受版权保护，是独立作品，本项目只是独立地重新实现了书里的原则，与原书作者无隶属关系，细节见 [ATTRIBUTION.md](ATTRIBUTION.md)。
 
 ---
 
-*Built because a PM with weak design instincts wanted the book's judgment available
-every time an agent touched a stylesheet.*
+*一个设计功底不足的产品经理做的。他想要的很简单：每次 AI 动样式表，这本书的判断力都在场。*
