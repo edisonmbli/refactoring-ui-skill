@@ -1,0 +1,111 @@
+/* ---------------------------------------------------------------------------
+ * Tailwind v4 theme skeleton — the no-Python fallback.
+ *
+ * Normally you do NOT hand-write this file: run
+ *     python3 scripts/emit_tokens.py design-tokens.json --format v4
+ * and it is generated from the token source of truth.
+ *
+ * Use this copy only when Python is unavailable. Fill every <...> by executing
+ * the manual algorithm in references/11-design-tokens.md, Step 2. Say in your
+ * response that the ramp was built by hand — the values will be less even than
+ * the script's.
+ *
+ * For Tailwind v3, the same values go under theme.extend in tailwind.config.js;
+ * the namespaces differ (colors / fontSize / spacing / boxShadow / …).
+ * See references/10-tailwind-mapping.md.
+ * ------------------------------------------------------------------------- */
+
+@import "tailwindcss";
+
+@theme {
+  /* --- primitive: color -------------------------------------------------
+   * §5.3.3 order: base(500) → edges(900/100) → midpoints(700/300)
+   *               → fill(800/600/400/200)
+   * §5.4    raise saturation as lightness moves away from 50%
+   * §5.4.2  rotate hue toward 60/180/300 to lighten, 0/120/240 to darken,
+   *         never more than 20–30°
+   */
+  --color-primary-100: <...>;
+  --color-primary-200: <...>;
+  --color-primary-300: <...>;
+  --color-primary-400: <...>;
+  --color-primary-500: <...>;   /* base — should work as a button background */
+  --color-primary-600: <...>;
+  --color-primary-700: <...>;
+  --color-primary-800: <...>;
+  --color-primary-900: <...>;
+
+  /* §5.2.1 8–10 greys. §5.3.4 darkest = darkest text, lightest = subtle
+   * off-white background. §5.5.1 pick a temperature and hold it at both ends. */
+  --color-neutral-50:  <...>;
+  --color-neutral-100: <...>;
+  --color-neutral-200: <...>;
+  --color-neutral-300: <...>;
+  --color-neutral-400: <...>;
+  --color-neutral-500: <...>;
+  --color-neutral-600: <...>;
+  --color-neutral-700: <...>;
+  --color-neutral-800: <...>;
+  --color-neutral-900: <...>;
+
+  /* §5.2.3 semantic accents — full ramps, named by meaning, never by hue */
+  --color-danger-100: <...>;   --color-danger-600: <...>;   --color-danger-800: <...>;
+  --color-warning-100: <...>;  --color-warning-500: <...>;
+  --color-success-100: <...>;  --color-success-700: <...>;
+
+  /* --- primitive: type — §4.1.1d, verbatim ---------------------------- */
+  --text-xs: 12px;   --text-sm: 14px;   --text-base: 16px; --text-lg: 18px;
+  --text-xl: 20px;   --text-2xl: 24px;  --text-3xl: 30px;  --text-4xl: 36px;
+  --text-5xl: 48px;  --text-6xl: 60px;  --text-7xl: 72px;
+
+  /* §2.2.b two weights only, never below 400 for UI text */
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+
+  /* §4.5 chosen per context — never one global value */
+  --leading-none: 1; --leading-tight: 1.25; --leading-normal: 1.5; --leading-loose: 2;
+
+  --font-sans: <...>, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* --- primitive: spacing — §3.2.2, verbatim (16px base, ≥25% steps) --- */
+  --spacing-1: 4px;    --spacing-2: 8px;    --spacing-3: 12px;   --spacing-4: 16px;
+  --spacing-6: 24px;   --spacing-8: 32px;   --spacing-12: 48px;  --spacing-16: 64px;
+  --spacing-24: 96px;  --spacing-32: 128px; --spacing-48: 192px; --spacing-64: 256px;
+  --spacing-96: 384px; --spacing-128: 512px;--spacing-160: 640px;--spacing-192: 768px;
+
+  /* --- primitive: radius — §1.4.3, ONE decision applied everywhere ----- */
+  --radius-sm: <...>; --radius-DEFAULT: <...>; --radius-lg: <...>;
+  --radius-full: 9999px;
+
+  /* --- primitive: elevation — §6.2.1, five levels, verbatim ----------- */
+  --shadow-sm:      0 1px 3px hsla(0,0%,0%,.2);
+  --shadow-DEFAULT: 0 4px 6px hsla(0,0%,0%,.2);
+  --shadow-md:      0 5px 15px hsla(0,0%,0%,.2);
+  --shadow-lg:      0 10px 24px hsla(0,0%,0%,.2);
+  --shadow-xl:      0 15px 35px hsla(0,0%,0%,.2);
+  --shadow-inner:   inset 0 2px 4px hsla(0,0%,0%,.06);
+
+  /* §1.5.3 / §2.7.2 — border width must be systematic too */
+  --border-width-DEFAULT: 1px;
+  --border-width-2: 2px;
+
+  /* --- semantic: components reference ONLY these ----------------------
+   * See references/15-beyond-the-book.md. This layer is what makes dark mode
+   * and rebranding a remap instead of a rewrite.
+   */
+  --color-surface:         var(--color-neutral-100);
+  --color-surface-raised:  var(--color-neutral-50);
+  --color-surface-sunken:  var(--color-neutral-200);
+  --color-text:            var(--color-neutral-900);  /* §2.2.a three tiers   */
+  --color-text-secondary:  var(--color-neutral-700);  /* §5.6 sets the floor  */
+  --color-text-muted:      var(--color-neutral-600);  /* on how light tier 3  */
+  --color-border:          var(--color-neutral-200);  /* is allowed to be     */
+  --color-border-strong:   var(--color-neutral-300);
+  --color-action:          var(--color-primary-500);
+  --color-action-hover:    var(--color-primary-600);
+  --color-action-subtle:   var(--color-primary-100);
+}
+
+/* Verify before shipping: every text-on-background pair must clear
+ * §5.6 — 4.5:1 for normal text, 3:1 for large. Declare only real text pairs;
+ * decorative borders are not text (§2.7.2). */

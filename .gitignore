@@ -1,0 +1,29 @@
+# ---------------------------------------------------------------------------
+# Source material — NEVER commit.
+# Contains the full text and all 284 figures of a commercially sold book.
+# This skill is a reimplementation of the book's principles, not a copy of it.
+# ---------------------------------------------------------------------------
+source/
+*.pdf
+
+# Planning notes (personal working document, not part of the deliverable)
+PLAN.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Generated token output
+design/
+*.tokens.json
+!skills/refactoring-ui/assets/tokens.template.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

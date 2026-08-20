@@ -1,0 +1,24 @@
+{
+  "name": "refactoring-ui",
+  "version": "0.1.0",
+  "description": "Unofficial design rulebook and diagnostic layer for web UI, derived from the book Refactoring UI by Adam Wathan & Steve Schoger (not affiliated or endorsed). Builds design tokens, guides new UI, refines existing UI, and audits interfaces against 151 tracked design rules with Tailwind mappings.",
+  "author": {
+    "name": "Edison Li"
+  },
+  "homepage": "https://github.com/edisonmbli/refactoring-ui-skill",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "ui",
+    "ux",
+    "design-system",
+    "design-tokens",
+    "tailwind",
+    "css",
+    "frontend",
+    "visual-hierarchy",
+    "typography",
+    "color",
+    "accessibility"
+  ]
+}

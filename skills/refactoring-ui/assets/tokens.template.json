@@ -1,0 +1,194 @@
+{
+  "$meta": {
+    "name": "Example design system",
+    "source": "refactoring-ui skill, Workflow A",
+    "note": "A shape, not a palette. Every value here must be regenerated for the real project.",
+    "personality": {
+      "formality": "neutral",
+      "era": "modern",
+      "density": "comfortable",
+      "grey-temperature": "cool"
+    },
+    "pairs-note": "Declare only real text-on-background pairs. Decorative borders and dividers are deliberately absent: they are not text, and \u00a72.7.2 says a soft 1px border is the desired look -- darkening it to hit a ratio is the overcorrection, not the fix."
+  },
+  "primitive": {
+    "color": {
+      "primary": {
+        "100": "#f3ebff",
+        "200": "#d5bbff",
+        "300": "#b88bff",
+        "400": "#8d66f4",
+        "500": "#4f46e5",
+        "600": "#3028d3",
+        "700": "#1d17b4",
+        "800": "#0c0893",
+        "900": "#02006b"
+      },
+      "neutral": {
+        "50": "#fafdff",
+        "100": "#f6fbfd",
+        "200": "#d3dee4",
+        "300": "#b1c0c8",
+        "400": "#919eac",
+        "500": "#707a8f",
+        "600": "#5b6377",
+        "700": "#464c5f",
+        "800": "#323548",
+        "900": "#1d1f2f",
+        "950": "#0e0f1c"
+      },
+      "danger": {
+        "100": "#ffebf1",
+        "200": "#ffb1cb",
+        "300": "#ff77a4",
+        "400": "#ef4d72",
+        "500": "#dc2626",
+        "600": "#c41818",
+        "700": "#aa0d0d",
+        "800": "#8f0101",
+        "900": "#6b0000"
+      },
+      "warning": {
+        "100": "#ffffeb",
+        "200": "#fff9ad",
+        "300": "#ffec6f",
+        "400": "#ffd831",
+        "500": "#eab308",
+        "600": "#d08800",
+        "700": "#af5f00",
+        "800": "#8d3e00",
+        "900": "#6b2d00"
+      },
+      "success": {
+        "100": "#ebfff9",
+        "200": "#9effe2",
+        "300": "#64edbf",
+        "400": "#32d385",
+        "500": "#16a34a",
+        "600": "#10963c",
+        "700": "#0a882f",
+        "800": "#047b22",
+        "900": "#006b17"
+      }
+    },
+    "font": {
+      "sans": "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, monospace"
+    },
+    "text": {
+      "xs": "12px",
+      "sm": "14px",
+      "base": "16px",
+      "lg": "18px",
+      "xl": "20px",
+      "2xl": "24px",
+      "3xl": "30px",
+      "4xl": "36px",
+      "5xl": "48px",
+      "6xl": "60px",
+      "7xl": "72px"
+    },
+    "space": {
+      "1": "4px",
+      "2": "8px",
+      "3": "12px",
+      "4": "16px",
+      "6": "24px",
+      "8": "32px",
+      "12": "48px",
+      "16": "64px",
+      "24": "96px",
+      "32": "128px",
+      "48": "192px",
+      "64": "256px",
+      "96": "384px",
+      "128": "512px",
+      "160": "640px",
+      "192": "768px"
+    },
+    "weight": {
+      "normal": "400",
+      "semibold": "600"
+    },
+    "leading": {
+      "none": "1",
+      "tight": "1.25",
+      "normal": "1.5",
+      "loose": "2"
+    },
+    "radius": {
+      "sm": "0.25rem",
+      "DEFAULT": "0.375rem",
+      "lg": "0.5rem",
+      "full": "9999px"
+    },
+    "shadow": {
+      "sm": "0 1px 3px hsla(0,0%,0%,.2)",
+      "DEFAULT": "0 4px 6px hsla(0,0%,0%,.2)",
+      "md": "0 5px 15px hsla(0,0%,0%,.2)",
+      "lg": "0 10px 24px hsla(0,0%,0%,.2)",
+      "xl": "0 15px 35px hsla(0,0%,0%,.2)",
+      "inner": "inset 0 2px 4px hsla(0,0%,0%,.06)"
+    }
+  },
+  "semantic": {
+    "color": {
+      "surface": "{color.neutral.100}",
+      "surface-raised": "{color.neutral.50}",
+      "surface-sunken": "{color.neutral.200}",
+      "text": "{color.neutral.900}",
+      "text-secondary": "{color.neutral.700}",
+      "text-muted": "{color.neutral.600}",
+      "border": "{color.neutral.200}",
+      "border-strong": "{color.neutral.300}",
+      "action": "{color.primary.500}",
+      "action-hover": "{color.primary.600}",
+      "action-subtle": "{color.primary.100}",
+      "danger": "{color.danger.600}",
+      "warning": "{color.warning.500}",
+      "success": "{color.success.700}"
+    }
+  },
+  "pairs": [
+    {
+      "name": "body text",
+      "fg": "#1d1f2f",
+      "bg": "#ffffff"
+    },
+    {
+      "name": "secondary text",
+      "fg": "#464c5f",
+      "bg": "#ffffff"
+    },
+    {
+      "name": "muted text",
+      "fg": "#5b6377",
+      "bg": "#ffffff"
+    },
+    {
+      "name": "body on surface",
+      "fg": "#1d1f2f",
+      "bg": "#f6fbfd"
+    },
+    {
+      "name": "primary button",
+      "fg": "#ffffff",
+      "bg": "#4f46e5"
+    },
+    {
+      "name": "link",
+      "fg": "#3028d3",
+      "bg": "#ffffff"
+    },
+    {
+      "name": "alert (flipped)",
+      "fg": "#8f0101",
+      "bg": "#ffebf1"
+    },
+    {
+      "name": "success text",
+      "fg": "#0a882f",
+      "bg": "#ffffff"
+    }
+  ]
+}
