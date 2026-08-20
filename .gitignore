@@ -6,8 +6,9 @@
 source/
 *.pdf
 
-# Planning notes (personal working document, not part of the deliverable)
+# Personal working documents — not part of the deliverable
 PLAN.md
+NOTE.md
 
 # Python
 __pycache__/
