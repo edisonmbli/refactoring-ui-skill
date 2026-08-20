@@ -236,14 +236,6 @@ skills/refactoring-ui/
 
 </details>
 
-## Contributing
-
-Issues and PRs welcome. Two rules specific to this repo:
-
-1. **Never add content copied from the book** — no prose, no figures. Restate in
-   your own words. See [ATTRIBUTION.md](ATTRIBUTION.md).
-2. **Keep the coverage matrix true.** Any change to a reference updates its row in
-   `00-coverage-matrix.md`. That file is why nothing gets quietly dropped.
 
 ## License
 
