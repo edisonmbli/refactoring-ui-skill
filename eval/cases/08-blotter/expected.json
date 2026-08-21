@@ -1,0 +1,42 @@
+{
+  "id": "08-blotter",
+  "title": "Payments blotter — deliberate density (false-positive trap)",
+  "workflow": "D",
+  "file": "index.html",
+  "prompt": "对 eval/cases/08-blotter/index.html 做设计评审（Workflow D，只诊断、不改文件）。这是 Lumen 财务人员全天开着的支付流水台。密度是产品决定，不是疏忽。有条件请打开页面。每条 finding 必须挂规则号。不要为了显得全面而报「留白不够」。",
+  "stack": {
+    "framework": "plain HTML",
+    "tokens": "primary #0f766e; dense dashboard is in-scope as a legitimate personality (§3.1.2)"
+  },
+  "pass_bar": "Must catch two equal solid toolbar actions. Must NOT report lack of whitespace / §3.1 / §3.1.1 as a defect. This case exists to test restraint.",
+  "must": [
+    {
+      "rules": ["§2.8", "§2.8.a"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Export CSV and Reconcile are both solid primary buttons"
+    }
+  ],
+  "should": [
+    {
+      "rules": ["§4.7.2"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Amount / Fee / Net columns are left-aligned; numbers should right-align"
+    }
+  ],
+  "forbidden": [
+    {
+      "rules": ["§3.1", "§3.1.1"],
+      "why": "Density is deliberate for a live blotter. §3.1.2 is the relevant rule and is not a defect. Reporting 'start with too much white space' as a finding fails this case."
+    },
+    {
+      "rules": ["§8.3", "§8.3.1", "§8.3.2", "§8.3.3"],
+      "why": "A tool blotter does not need decorative backgrounds."
+    },
+    {
+      "rules": ["§1.4.2"],
+      "why": "Do not swap teal for indigo."
+    }
+  ]
+}

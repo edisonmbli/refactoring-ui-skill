@@ -1,0 +1,58 @@
+{
+  "id": "04-stats",
+  "title": "Dashboard stat cards — inverted hierarchy",
+  "workflow": "D",
+  "file": "index.html",
+  "prompt": "对 eval/cases/04-stats/index.html 做设计评审（Workflow D，只诊断、不改文件）。Lumen 概览页的指标卡。主色 #0f766e。有条件请打开页面。每条 finding 必须挂规则号。",
+  "stack": {
+    "framework": "plain HTML",
+    "tokens": "primary #0f766e"
+  },
+  "pass_bar": "Must invert the label/value hierarchy and catch modal-scale shadows on static cards. Color-only or emoji-as-icon may land in should.",
+  "must": [
+    {
+      "rules": ["§2.5.3", "§2.5", "§2.1", "§2.2"],
+      "severity": "P0",
+      "severity_floor": "P1",
+      "now": "Labels are 24px bold; the actual metrics are 14px muted — a scanner looking for numbers finds words"
+    },
+    {
+      "rules": ["§6.2", "§6.2.1", "§6.2.a"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Every static card uses a large stacked shadow (appearance, not z-position)"
+    }
+  ],
+  "should": [
+    {
+      "rules": ["§5.7"],
+      "severity": "P0",
+      "severity_floor": "P1",
+      "now": "Trend direction is a green/red hue plus an emoji; the sign does not read without color (📉 2.1% is still green)"
+    },
+    {
+      "rules": ["§8.1", "§2.7.1"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Emoji used as icons"
+    },
+    {
+      "rules": ["§4.7", "§4.7.1", "§8.5"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Cards are fully centered; also border + shadow on a grey page"
+    },
+    {
+      "rules": ["§3.6"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Uniform 8px gaps between label, value, and trend — no grouping"
+    }
+  ],
+  "forbidden": [
+    {
+      "rules": ["§1.4.2"],
+      "why": "Do not introduce indigo as the product color."
+    }
+  ]
+}

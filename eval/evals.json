@@ -1,0 +1,94 @@
+{
+  "skill_name": "refactoring-ui",
+  "version": "0.1.0",
+  "workflow": "D",
+  "notes": "Gold-set prompts. Grade audits with eval/score.py against each case's expected.json — not with these expectation strings alone.",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "对 eval/cases/01-settings/index.html 做设计评审（Workflow D，只诊断、不改文件）。这是 Lumen 发票产品的设置页。项目已有主色 #0f766e（teal），不是 indigo。请先探测技术栈，有条件就打开页面看渲染，按七个视角出 finding 表，每条必须挂规则号。",
+      "files": ["eval/cases/01-settings/index.html"],
+      "expected_output": "A Workflow D audit table. Must cite §2.8/§2.8.a/§2.8.1, §2.3, and §3.6. Must not treat teal as a brand defect.",
+      "expectations": [
+        "Output is diagnose-only (no file edits)",
+        "Findings are rows that include a severity (P0/P1/P2) and a rule id starting with §",
+        "Report cites §2.8 or §2.8.a or §2.8.1 for the three solid buttons / destructive primary",
+        "Report cites §2.3 or §2.3.a for grey text on the teal banner",
+        "Report cites §3.6 or §3.6.a for equal label and group spacing"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "对 eval/cases/02-login/index.html 做设计评审（Workflow D，只诊断、不改文件）。Lumen 登录页，主色 #0f766e。有条件请打开页面看渲染。每条 finding 必须挂规则号。",
+      "files": ["eval/cases/02-login/index.html"],
+      "expected_output": "Audit catches P0 grouping on the password form, two primaries, raised inputs.",
+      "expectations": [
+        "Cites §3.6 or §3.6.a",
+        "Cites §2.8 or §2.8.a",
+        "Cites §6.1.3 or §6.1.1 or §6.2 for input shadows"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "对 eval/cases/03-empty/index.html 做设计评审（Workflow D，只诊断、不改文件）。这是 Lumen 的项目列表，当前账号下还没有任何项目。有条件请打开页面。每条 finding 必须挂规则号。",
+      "files": ["eval/cases/03-empty/index.html"],
+      "expected_output": "Empty-state audit: hide disabled chrome; missing create CTA. Not merely 'add an illustration'.",
+      "expectations": [
+        "Cites §8.4",
+        "Cites §2.8 or §2.8.a for a missing primary action",
+        "Does not report §4.7.1 centering as a defect"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "对 eval/cases/04-stats/index.html 做设计评审（Workflow D，只诊断、不改文件）。Lumen 概览页的指标卡。主色 #0f766e。有条件请打开页面。每条 finding 必须挂规则号。",
+      "files": ["eval/cases/04-stats/index.html"],
+      "expected_output": "Inverted label/value hierarchy and oversized card shadows.",
+      "expectations": [
+        "Cites §2.5.3 or §2.5 or §2.1 or §2.2",
+        "Cites §6.2 or §6.2.1 or §6.2.a"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "对 eval/cases/05-landing/index.html 做设计评审（Workflow D，只诊断、不改文件）。这是 Lumen 的营销首页。品牌规范已经确定：主色是 #0f766e（teal），不是 indigo。页面是另一次生成留下来的。有条件请打开页面。每条 finding 必须挂规则号。",
+      "files": ["eval/cases/05-landing/index.html"],
+      "expected_output": "Flags indigo/pink vs teal brand, wide-hue gradient, four filled CTAs.",
+      "expectations": [
+        "Cites §1.4.2 or §5.2.2 or §5.2.3 for the indigo default vs teal brand",
+        "Cites §8.3.1 for the gradient",
+        "Cites §2.8 or §2.8.a for multiple primary buttons"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "对 eval/cases/06-article/index.html 做设计评审（Workflow D，只诊断、不改文件）。这是 Lumen 帮助中心的一篇正文。有条件请在桌面宽度（约 1280）打开页面看实际行长。每条 finding 必须挂规则号。",
+      "files": ["eval/cases/06-article/index.html"],
+      "expected_output": "Measure and centered long-form.",
+      "expectations": [
+        "Cites §4.3 or §4.3.1",
+        "Cites §4.7.1 or §4.7"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "对 eval/cases/07-hero/index.html 做设计评审（Workflow D，只诊断、不改文件）。Lumen 营销英雄区，背景是浅色风景插画（无遮罩）。请打开页面看渲染，不要只看源码里的 color: white。每条 finding 必须挂规则号。",
+      "files": ["eval/cases/07-hero/index.html"],
+      "expected_output": "Text-on-image contrast failure from pixels, not from the CSS color name.",
+      "expectations": [
+        "Cites §7.2 or §7.2.1 or §7.2.2 or §7.2.3 or §7.2.4 or §7.2.5 or §5.6"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "对 eval/cases/08-blotter/index.html 做设计评审（Workflow D，只诊断、不改文件）。这是 Lumen 财务人员全天开着的支付流水台。密度是产品决定，不是疏忽。有条件请打开页面。每条 finding 必须挂规则号。不要为了显得全面而报「留白不够」。",
+      "files": ["eval/cases/08-blotter/index.html"],
+      "expected_output": "Two toolbar primaries. Must not cite §3.1 / §3.1.1 as defects.",
+      "expectations": [
+        "Cites §2.8 or §2.8.a",
+        "Does not cite §3.1 or §3.1.1 as a finding",
+        "Does not cite §8.3 as a finding"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumen — Sign in</title>
+  <!--
+    Gold fixture 02-login
+    Product: Lumen Invoicing. Primary #0f766e.
+    The load-bearing bug is equal inner/outer spacing on a password form (§3.6 P0).
+  -->
+  <style>
+    :root { --primary: #0f766e; --text: #111827; --muted: #6b7280; --line: #d1d5db; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #f9fafb;
+      color: var(--text);
+    }
+    form {
+      width: 100%;
+      max-width: 420px;
+      padding: 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    h1 { margin: 0 0 16px; font-size: 22px; }
+    .row { margin-bottom: 16px; }
+    .row label {
+      display: block;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .row input {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.25);
+    }
+    .btns { display: flex; flex-direction: column; gap: 16px; }
+    .btns button {
+      width: 100%;
+      padding: 12px;
+      border: 0;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+    }
+    .btns button:first-child { background: var(--primary); }
+    .btns button:last-child { background: #374151; }
+  </style>
+</head>
+<body>
+  <form action="#" method="post">
+    <h1>Sign in to Lumen</h1>
+    <div class="row">
+      <label for="email">Email address</label>
+      <input id="email" name="email" type="text" autocomplete="username" />
+    </div>
+    <div class="row">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" />
+    </div>
+    <div class="btns">
+      <button type="submit">Sign in</button>
+      <button type="button">Create account</button>
+    </div>
+  </form>
+</body>
+</html>

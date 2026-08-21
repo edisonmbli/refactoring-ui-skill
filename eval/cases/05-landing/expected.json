@@ -1,0 +1,59 @@
+{
+  "id": "05-landing",
+  "title": "Marketing landing — AI-generated slop against an existing teal brand",
+  "workflow": "D",
+  "file": "index.html",
+  "prompt": "对 eval/cases/05-landing/index.html 做设计评审（Workflow D，只诊断、不改文件）。这是 Lumen 的营销首页。品牌规范已经确定：主色是 #0f766e（teal），不是 indigo。页面是另一次生成留下来的。有条件请打开页面。每条 finding 必须挂规则号。",
+  "stack": {
+    "framework": "plain HTML",
+    "tokens": "EXISTING primary is #0f766e. The page's indigo is the defect, not the spec."
+  },
+  "pass_bar": "Must notice the indigo/pink vs teal brand, the >30° gradient, and four equal filled CTAs. Centering a long hero paragraph should be caught or listed in should.",
+  "must": [
+    {
+      "rules": ["§1.4.2", "§5.2.2", "§5.2.3", "§1.5"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Product brand is teal #0f766e; the page uses indigo #4f46e5 as primary (classic corpus default)"
+    },
+    {
+      "rules": ["§8.3.1"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Hero gradient runs indigo→pink, roughly 200° apart; book cap is ~30°"
+    },
+    {
+      "rules": ["§2.8", "§2.8.a"],
+      "severity": "P1",
+      "severity_floor": "P1",
+      "now": "Four filled pill buttons, all primary-looking"
+    }
+  ],
+  "should": [
+    {
+      "rules": ["§4.7.1", "§4.7"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Hero body copy is several lines and still centered; text-align:center on body leaks"
+    },
+    {
+      "rules": ["§8.1", "§2.7.1"],
+      "severity": "P2",
+      "severity_floor": "P2",
+      "now": "Emoji as icons in the hero and feature row"
+    },
+    {
+      "rules": ["§2.3", "§5.6"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Hero supporting text is grey (#e5e7eb) on a shifting colored gradient"
+    },
+    {
+      "rules": ["§6.2", "§6.2.a"],
+      "severity": "P2",
+      "severity_floor": "P2",
+      "now": "Feature cards all use shadow-lg-scale elevation"
+    }
+  ],
+  "forbidden": []
+}

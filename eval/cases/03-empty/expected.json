@@ -1,0 +1,40 @@
+{
+  "id": "03-empty",
+  "title": "Projects — empty state with disabled chrome",
+  "workflow": "D",
+  "file": "index.html",
+  "prompt": "对 eval/cases/03-empty/index.html 做设计评审（Workflow D，只诊断、不改文件）。这是 Lumen 的项目列表，当前账号下还没有任何项目。有条件请打开页面。每条 finding 必须挂规则号。",
+  "stack": {
+    "framework": "plain HTML",
+    "tokens": "primary #0f766e"
+  },
+  "pass_bar": "Must catch disabled filters/search/headers that should be hidden, and that this is an empty state (not a failed search) needing a CTA. An audit that only says 'add an illustration' fails.",
+  "must": [
+    {
+      "rules": ["§8.4"],
+      "severity": "P0",
+      "severity_floor": "P0",
+      "now": "Filters, search, and table headers are rendered but disabled — supporting UI that does nothing until content exists"
+    },
+    {
+      "rules": ["§2.8", "§2.8.a"],
+      "severity": "P0",
+      "severity_floor": "P1",
+      "now": "No primary CTA to create the first project; 'No results found' describes a search miss, not a first-run empty state. A report that only says 'add an illustration' without ranking an action fails this item."
+    }
+  ],
+  "should": [
+    {
+      "rules": ["§2.2.a", "§2.2"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "The only message on the screen is tertiary grey (#9ca3af) — here it is primary content"
+    }
+  ],
+  "forbidden": [
+    {
+      "rules": ["§4.7.1"],
+      "why": "Centering a short empty-state message is legitimate. Do not report text-align:center on this screen as a defect."
+    }
+  ]
+}

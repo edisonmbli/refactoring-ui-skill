@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumen — Overview</title>
+  <!--
+    Gold fixture 04-stats
+    Dashboard stat cards with inverted hierarchy, emoji icons, modal shadows.
+  -->
+  <style>
+    :root { --primary: #0f766e; --text: #111827; --muted: #9ca3af; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #f3f4f6;
+      color: var(--text);
+    }
+    header { padding: 24px 32px 8px; }
+    h1 { margin: 0; font-size: 18px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 16px 32px 32px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.25), 0 4px 6px -2px rgba(0,0,0,.1);
+    }
+    .label {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .value {
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .trend {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #22c55e;
+    }
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>This month</h1>
+  </header>
+  <section class="grid">
+    <article class="card">
+      <div class="label">Monthly revenue</div>
+      <div class="value">$48,200</div>
+      <div class="trend">📈 12.5%</div>
+    </article>
+    <article class="card">
+      <div class="label">Open invoices</div>
+      <div class="value">27</div>
+      <div class="trend">📈 4.0%</div>
+    </article>
+    <article class="card">
+      <div class="label">Avg. days to pay</div>
+      <div class="value">18</div>
+      <div class="trend">📉 2.1%</div>
+    </article>
+  </section>
+</body>
+</html>

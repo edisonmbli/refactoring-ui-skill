@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumen — Invoicing that feels like magic</title>
+  <!--
+    Gold fixture 05-landing
+    Brand spec (existing system): primary #0f766e teal.
+    This page ignored it — typical generated marketing: indigo→pink gradient,
+    everything centered, emoji, every CTA filled.
+  -->
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: #111827;
+      background: #fff;
+      text-align: center;
+    }
+    .hero {
+      padding: 72px 24px;
+      background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
+      color: #fff;
+    }
+    .hero h1 {
+      margin: 0 auto;
+      max-width: 720px;
+      font-size: 48px;
+      line-height: 1.5;
+    }
+    .hero p {
+      margin: 16px auto 0;
+      max-width: 680px;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #e5e7eb;
+    }
+    .ctas { margin-top: 24px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .ctas a {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: #4f46e5;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .ctas a.alt { background: #7c3aed; }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 32px;
+    }
+    .features article {
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      box-shadow: 0 10px 15px rgba(0,0,0,.15);
+    }
+    .features h2 { font-size: 16px; margin: 8px 0; }
+    .features p { margin: 0; color: #6b7280; font-size: 14px; }
+    @media (max-width: 700px) {
+      .features { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>✨ Invoicing that feels like magic for modern studios ✨</h1>
+    <p>Lumen helps independent studios send invoices, chase late payments, and forecast cash without switching tabs. Built for people who would rather be making the work than formatting PDF letterhead at midnight. Join thousands of teams already shipping with confidence every single week.</p>
+    <div class="ctas">
+      <a href="#">Get started</a>
+      <a href="#" class="alt">Book a demo</a>
+      <a href="#">Talk to sales</a>
+      <a href="#">See pricing</a>
+    </div>
+  </section>
+  <section class="features">
+    <article>
+      <div>🚀</div>
+      <h2>Faster billing</h2>
+      <p>Create and send an invoice in under a minute from any browser.</p>
+    </article>
+    <article>
+      <div>💜</div>
+      <h2>Friendly reminders</h2>
+      <p>Automatic nudges that still sound like they came from you.</p>
+    </article>
+    <article>
+      <div>📊</div>
+      <h2>Live cash view</h2>
+      <p>See what is owed, what is late, and what lands this week.</p>
+    </article>
+  </section>
+</body>
+</html>

@@ -1,0 +1,7 @@
+---
+description: Design rulebook and diagnostic layer for UI work -- hierarchy, layout and spacing, typography, color and contrast, depth and shadows, images, finishing touches. Load for any screen or component build, a design review, or setting up design tokens.
+globs: **/*.tsx,**/*.jsx,**/*.vue,**/*.svelte,**/*.html,**/*.css
+alwaysApply: false
+---
+
+Before building, changing, or reviewing any UI, first read `skills/refactoring-ui/SKILL.md` and follow its routing table. It tells you which file under `references/` to load next -- load on demand, one at a time. Do not read the whole `references/` directory up front; progressive, on-demand loading is the design, not an optimization.

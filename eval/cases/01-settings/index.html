@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumen — Account settings</title>
+  <!--
+    Gold fixture 01-settings
+    Product: Lumen Invoicing. Existing tokens — primary #0f766e (teal), not indigo.
+    Do not treat the teal as a defect.
+  -->
+  <style>
+    :root {
+      --primary: #0f766e;
+      --text: #111827;
+      --muted: #6b7280;
+      --faint: #9ca3af;
+      --line: #e5e7eb;
+      --bg: #f3f4f6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .banner {
+      background: var(--primary);
+      color: var(--faint);
+      padding: 16px 32px;
+    }
+    .banner h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0;
+    }
+    .banner p { margin: 8px 0 0; font-size: 14px; color: var(--faint); }
+    .wrap { max-width: 720px; margin: 24px auto; padding: 0 16px; }
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.2);
+    }
+    .kicker {
+      margin: 0 0 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .group { margin-bottom: 16px; }
+    .group label {
+      display: block;
+      margin-bottom: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .group input, .group select {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .hint { margin: 16px 0 0; font-size: 14px; color: var(--muted); }
+    .actions { display: flex; gap: 16px; margin-top: 16px; }
+    .actions button {
+      flex: 1;
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--primary);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="banner">
+    <h1>Account settings</h1>
+    <p>Manage how Lumen shows up on the invoices you send.</p>
+  </header>
+  <main class="wrap">
+    <section class="card">
+      <p class="kicker">Profile</p>
+      <div class="group">
+        <label for="name">Display name</label>
+        <input id="name" value="Northwind Studio" />
+        <p class="hint">Shown on every PDF.</p>
+      </div>
+      <div class="group">
+        <label for="email">Reply-to email</label>
+        <input id="email" type="email" value="billing@northwind.example" />
+      </div>
+      <div class="group">
+        <label for="tz">Timezone</label>
+        <select id="tz">
+          <option>America/Los_Angeles</option>
+        </select>
+      </div>
+      <div class="actions">
+        <button type="button">Save changes</button>
+        <button type="button">Preview invoice</button>
+        <button type="button">Delete account</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

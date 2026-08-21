@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumen — Payments blotter</title>
+  <!--
+    Gold fixture 08-blotter
+    Deliberate density (§3.1.2). Trap for "add more whitespace" as a P0.
+    One real ranking bug in the toolbar; numbers are left-aligned (should, not must).
+  -->
+  <style>
+    :root { --primary: #0f766e; --text: #111827; --line: #e5e7eb; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+      font-size: 12px;
+      line-height: 1.35;
+      color: var(--text);
+      background: #fff;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    header h1 { margin: 0; font-size: 13px; font-weight: 600; margin-right: auto; }
+    header button {
+      padding: 4px 8px;
+      font-size: 12px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      padding: 4px 8px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      white-space: nowrap;
+    }
+    th { font-weight: 600; background: #f9fafb; position: sticky; top: 0; }
+    tr:hover td { background: #f0fdfa; }
+    .ok { color: #0f766e; }
+    .late { color: #b91c1c; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Payments · live blotter</h1>
+    <button type="button">Export CSV</button>
+    <button type="button">Reconcile</button>
+  </header>
+  <table>
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Invoice</th>
+        <th>Client</th>
+        <th>Method</th>
+        <th>Amount</th>
+        <th>Fee</th>
+        <th>Net</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>09:41:02</td><td>INV-18402</td><td>Northwind Studio</td><td>ACH</td><td>12800.00</td><td>32.00</td><td>12768.00</td><td class="ok">Posted</td></tr>
+      <tr><td>09:40:51</td><td>INV-18391</td><td>Harbor &amp; Co</td><td>Card</td><td>940.50</td><td>27.27</td><td>913.23</td><td class="ok">Posted</td></tr>
+      <tr><td>09:38:17</td><td>INV-18388</td><td>Kite Press</td><td>Wire</td><td>22150.00</td><td>0.00</td><td>22150.00</td><td class="ok">Posted</td></tr>
+      <tr><td>09:33:04</td><td>INV-18370</td><td>Oakline Legal</td><td>Card</td><td>3600.00</td><td>104.40</td><td>3495.60</td><td class="late">Failed</td></tr>
+      <tr><td>09:29:44</td><td>INV-18366</td><td>Fieldwork Audio</td><td>ACH</td><td>210.00</td><td>0.53</td><td>209.47</td><td class="ok">Posted</td></tr>
+      <tr><td>09:22:18</td><td>INV-18351</td><td>Pine &amp; Copper</td><td>ACH</td><td>7755.25</td><td>19.39</td><td>7735.86</td><td class="ok">Posted</td></tr>
+      <tr><td>09:18:03</td><td>INV-18344</td><td>Marrow Ceramics</td><td>Card</td><td>480.00</td><td>13.92</td><td>466.08</td><td class="ok">Posted</td></tr>
+      <tr><td>09:11:56</td><td>INV-18329</td><td>Northwind Studio</td><td>ACH</td><td>640.00</td><td>1.60</td><td>638.40</td><td class="late">Returned</td></tr>
+      <tr><td>09:07:12</td><td>INV-18320</td><td>Glasshouse</td><td>Wire</td><td>15000.00</td><td>0.00</td><td>15000.00</td><td class="ok">Posted</td></tr>
+      <tr><td>09:01:40</td><td>INV-18311</td><td>Harbor &amp; Co</td><td>Card</td><td>125.00</td><td>3.63</td><td>121.37</td><td class="ok">Posted</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

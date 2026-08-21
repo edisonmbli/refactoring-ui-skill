@@ -22,9 +22,14 @@ design/
 *.tokens.json
 !skills/refactoring-ui/assets/tokens.template.json
 
+# Eval run artifacts — keep the folder, not the reports
+eval/runs/**
+!eval/runs/README.md
+
 # OS / editor
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
 *.swp
+

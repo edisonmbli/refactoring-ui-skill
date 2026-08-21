@@ -1,0 +1,39 @@
+{
+  "id": "02-login",
+  "title": "Sign-in form — ambiguous grouping is a data-entry error",
+  "workflow": "D",
+  "file": "index.html",
+  "prompt": "对 eval/cases/02-login/index.html 做设计评审（Workflow D，只诊断、不改文件）。Lumen 登录页，主色 #0f766e。有条件请打开页面看渲染。每条 finding 必须挂规则号。",
+  "stack": {
+    "framework": "plain HTML",
+    "tokens": "primary #0f766e"
+  },
+  "pass_bar": "Must flag equal label/input vs group spacing as P0-class grouping, two solid primaries, and raised shadows on inputs.",
+  "must": [
+    {
+      "rules": ["§3.6", "§3.6.a"],
+      "severity": "P0",
+      "severity_floor": "P0",
+      "now": "Label margin-bottom is 16px and .row margin-bottom is 16px — each label is as close to the previous field as to its own input"
+    },
+    {
+      "rules": ["§2.8", "§2.8.a"],
+      "severity": "P1",
+      "severity_floor": "P1",
+      "now": "Sign in and Create account are both full-width solid buttons"
+    },
+    {
+      "rules": ["§6.1.3", "§6.1.1", "§6.2"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Text inputs carry a large outer drop shadow and read as raised rather than inset"
+    }
+  ],
+  "should": [],
+  "forbidden": [
+    {
+      "rules": ["§1.4.2"],
+      "why": "Teal is the brand. Do not report missing indigo."
+    }
+  ]
+}

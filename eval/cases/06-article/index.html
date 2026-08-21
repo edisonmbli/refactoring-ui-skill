@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumen — How late fees work</title>
+  <!--
+    Gold fixture 06-article
+    Long-form help article: no measure, centered body, heading line-height 1.5.
+  -->
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: #111827;
+      background: #fff;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    article { padding: 32px 24px 80px; }
+    h1 {
+      font-size: 40px;
+      line-height: 1.5;
+      margin: 0 0 16px;
+    }
+    .meta { color: #6b7280; margin-bottom: 24px; }
+    p { margin: 0 0 16px; }
+  </style>
+</head>
+<body>
+  <article>
+    <h1>How Lumen calculates late fees, and what your client actually sees on the PDF</h1>
+    <p class="meta">Updated 12 March 2026 · 8 min read</p>
+    <p>When an invoice crosses its due date, Lumen does not wait for you to remember. It applies the late-fee rule attached to that client’s billing profile, stamps the original PDF with a second line item, and sends a notice that quotes the fee in the same currency as the invoice. The important part is that none of this is hidden in an email footer: the revised PDF is the source of truth, and the running balance in the dashboard matches it to the cent.</p>
+    <p>The fee itself is either a flat amount or a percentage of the remaining balance, never both on the same invoice. Percentages are calculated on the unpaid remainder after credits, not on the original total, which is the usual source of “why doesn’t this match QuickBooks” tickets. If you have already collected a partial payment, the percentage runs against what is still open. Flat fees are applied once per invoice, not once per reminder, even if you have a daily nudge cadence turned on.</p>
+    <p>Clients see the fee the next time they open the payment link. If they pay the original amount after the fee has been applied, Lumen records an underpayment and keeps the invoice open. If they pay the new total, the invoice closes and the late-fee line is included in your tax export as its own account, so you can map it however your accountant prefers.</p>
+    <p>You can waive a fee from the invoice page. Waiving does not delete the history; it adds a reversal line so the audit trail still shows that a fee existed. That reversal is what keeps the PDF, the dashboard, and the export in agreement after a courtesy write-off. There is no way to silently remove the fee, on purpose: two people looking at the same invoice a month later should be able to reconstruct the story without Slack.</p>
+  </article>
+</body>
+</html>

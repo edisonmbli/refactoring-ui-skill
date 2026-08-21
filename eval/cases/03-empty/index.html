@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumen — Projects</title>
+  <!--
+    Gold fixture 03-empty
+    First-run empty state with disabled chrome still on screen (§8.4).
+  -->
+  <style>
+    :root { --primary: #0f766e; --text: #111827; --muted: #9ca3af; --line: #e5e7eb; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: #fff;
+    }
+    .app { max-width: 960px; margin: 0 auto; padding: 24px; }
+    h1 { margin: 0 0 16px; font-size: 20px; }
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .toolbar button, .toolbar input {
+      opacity: 0.45;
+      pointer-events: none;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .toolbar input { margin-left: auto; width: 180px; }
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 8px 4px;
+      border-bottom: 1px solid var(--line);
+    }
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 48px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <h1>Projects</h1>
+    <div class="toolbar">
+      <button type="button" disabled>All</button>
+      <button type="button" disabled>Active</button>
+      <button type="button" disabled>Archived</button>
+      <input placeholder="Search projects…" disabled />
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Owner</th>
+          <th>Updated</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p class="empty">No results found.</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "id": "07-hero",
+  "title": "Marketing hero — white text on a light image",
+  "workflow": "D",
+  "file": "index.html",
+  "prompt": "对 eval/cases/07-hero/index.html 做设计评审（Workflow D，只诊断、不改文件）。Lumen 营销英雄区，背景是浅色风景插画（无遮罩）。请打开页面看渲染，不要只看源码里的 color: white。每条 finding 必须挂规则号。",
+  "stack": {
+    "framework": "plain HTML",
+    "tokens": "primary should remain teal if mentioned; this fixture does not set a brand fill"
+  },
+  "pass_bar": "Must flag unreadable / inconsistent contrast of text over the image (§7.2 family). Code-only audits that miss it because the CSS says color:#fff still fail — the point of this case is pixel contrast.",
+  "must": [
+    {
+      "rules": ["§7.2", "§7.2.1", "§7.2.2", "§7.2.3", "§7.2.4", "§7.2.5", "§5.6"],
+      "severity": "P0",
+      "severity_floor": "P1",
+      "now": "White / near-white text on a light photograph with no overlay, no contrast reduction, no text shadow. Parts of the image (sky, sun disc) make the type unreadable."
+    }
+  ],
+  "should": [
+    {
+      "rules": ["§4.3", "§4.3.1"],
+      "severity": "P1",
+      "severity_floor": "P2",
+      "now": "Supporting paragraph is max-width 42em — slightly past 35em / 75ch. Allowed miss; the image contrast is the case."
+    }
+  ],
+  "forbidden": [
+    {
+      "rules": ["§8.4"],
+      "why": "Not an empty state."
+    }
+  ]
+}

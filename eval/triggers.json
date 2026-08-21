@@ -1,0 +1,23 @@
+{
+  "skill_name": "refactoring-ui",
+  "notes": "Invocation eval only. Fresh session per prompt. Success = the agent reads skills/refactoring-ui/SKILL.md (or equivalent installed skill). Do not mix this score with audit must/forbidden.",
+  "should_trigger": [
+    "帮我看看这个设置页，总觉得哪里不对但说不上来。",
+    "对这个页面做一次设计评审。",
+    "UI 太丑了，帮我指出问题，先别改代码。",
+    "这个项目没有设计规范，帮我定一套 design tokens。",
+    "为什么灰字放在蓝色 banner 上这么难看？",
+    "Review this landing page for visual hierarchy and spacing.",
+    "This form looks off — audit it against design rules before changing anything.",
+    "Establish a type scale, spacing scale, and color ramps for this app."
+  ],
+  "should_not_trigger": [
+    "给这个 API 加一个分页参数。",
+    "解释一下这段 Python 里的 GIL 行为。",
+    "帮我写 commit message。",
+    "修复这个 SQL 注入，不要动前端。",
+    "把 README 的错别字改掉。",
+    "Refactor this reducer for readability; the UI is out of scope.",
+    "Why is the test suite failing on CI?"
+  ]
+}
