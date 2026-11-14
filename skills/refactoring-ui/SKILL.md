@@ -1,6 +1,6 @@
 ---
 name: refactoring-ui
-description: Design rulebook and diagnostic layer for web UI, distilled from Refactoring UI by Adam Wathan and Steve Schoger. Use when building a new page or component, refining UI that looks off or amateurish, running a design review, or establishing design tokens (color shades, type scale, spacing scale, elevation, radius). Covers visual hierarchy, layout and spacing, typography, color and contrast, depth and shadows, images, and finishing touches, with Tailwind mappings throughout. Also triggers on non-English requests for the same things - for example Chinese: 页面/界面设计, 样式调整, UI 太丑, 设计评审, 视觉层级, 配色, 对比度, 间距, 排版, 阴影, 空状态, 设计规范, 设计系统. Not for backend logic, copy editing, or changes with no visual surface.
+description: 'Design rulebook and diagnostic layer for web UI, distilled from Refactoring UI by Adam Wathan and Steve Schoger. Use when building a new page or component, refining UI that looks off or amateurish, running a design review, or establishing design tokens (color shades, type scale, spacing scale, elevation, radius). Covers visual hierarchy, layout and spacing, typography, color and contrast, depth and shadows, images, and finishing touches, with Tailwind mappings throughout. Also triggers on non-English requests for the same things - for example Chinese: 页面/界面设计, 样式调整, UI 太丑, 设计评审, 视觉层级, 配色, 对比度, 间距, 排版, 阴影, 空状态, 设计规范, 设计系统. Not for backend logic, copy editing, or changes with no visual surface.'
 ---
 
 # Refactoring UI
